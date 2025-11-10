@@ -23,7 +23,9 @@ void inputNumbers(int arr[], int *n)
 int sumArray(int arr[], int n)
 {
     int sum = 0;
-    for (int i = 0; i > n; i++)
+    // FIX: The loop condition was 'i > n', which would never run.
+    // It has been corrected to 'i < n'.
+    for (int i = 0; i < n; i++) 
     {
         sum += arr[i];
     }
@@ -37,7 +39,10 @@ float averageArray(int arr[], int n)
     {
         sum += arr[i];
     }
-    return sum / n;
+    
+    // FIX: 'sum / n' was performing integer division.
+    // Casting 'sum' to (float) ensures floating-point division.
+    return (float)sum / n; 
 }
 
 int findMin(int arr[], int n)
@@ -74,7 +79,7 @@ int main()
     inputNumbers(numbers, &n);
     if (n == 0)
     {
-        return 1;
+        return 1; // Exit if input was invalid
     }
 
     printf("Sum: %d\n", sumArray(numbers, n));
